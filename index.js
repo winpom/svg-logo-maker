@@ -3,6 +3,13 @@ const fs = require('fs');
 const inquirer = require("inquirer");
 const { Circle, Square, Triangle } = require('./lib/shapes');
 
+const validateText = (input) => {
+    if (input.length > 3) {
+        return "Text must be no more than 3 characters.";
+    }
+    return true;
+};
+
 const questions = [{
     type: "list",
     message: "What shape would you like to choose?",
@@ -16,8 +23,9 @@ const questions = [{
 },
 {
     type: "input",
-    message: "What would you like text to say?",
+    message: "What would you like text to say? (Up to 3 characters)",
     name: "text",
+    validate: validateText, 
 },
 {
     type: "input",
