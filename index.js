@@ -1,8 +1,8 @@
-// TODO: Include packages needed for this application
 const fs = require('fs');
 const inquirer = require("inquirer");
 const { Circle, Square, Triangle } = require('./lib/shapes');
 
+//Confirm inputted text meets 3 max character requirement
 const validateText = (input) => {
     if (input.length > 3) {
         return "Text must be no more than 3 characters.";
@@ -10,6 +10,7 @@ const validateText = (input) => {
     return true;
 };
 
+// Questions for user
 const questions = [{
     type: "list",
     message: "What shape would you like to choose?",
@@ -33,6 +34,7 @@ const questions = [{
     name: "textColor",
 },]
 
+// Function to create SVG with user's choices
 function createSVG(answers) {
     const shapeClasses = {
         'Circle': Circle,
@@ -62,7 +64,7 @@ ${shape.render()}
     });
 }
 
-// TODO: Create a function to initialize app
+// Function to initialize app
 const init = () => {
     inquirer
         .prompt(questions)

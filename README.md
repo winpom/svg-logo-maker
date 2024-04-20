@@ -2,6 +2,8 @@
 
 The SVG Generator is a command-line application that allows users to create SVG images by specifying the shape, color, text, and text color. Users can choose from three shapes: Circle, Square, and Triangle, and customize their appearance using color keywords or hexadecimal values.
 
+Video of the application in action: https://drive.google.com/file/d/1BdpAUgFcMrQUqSQJpPdeRAtKpbRKsyMU/view?usp=sharing 
+
 #### Features
 
 - Create SVG images with customizable shapes, colors, and text.
