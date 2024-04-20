@@ -1,6 +1,7 @@
 // TODO: Include packages needed for this application
 const fs = require('fs');
 const inquirer = require("inquirer");
+const { Circle, Square, Triangle } = require('./lib/shapes');
 
 const questions = [{
     type: "list",
@@ -25,12 +26,22 @@ const questions = [{
 },]
 
 function createSVG(answers) {
+    const shapeClasses = {
+        'Circle': Circle,
+        'Square': Square,
+        'Triangle': Triangle
+    };
+
+    const ShapeClass = shapeClasses[answers.shape];
+    const shape = new ShapeClass();
+    shape.setColor(answers.shapeColor);
+
     const SVG = `
 <svg version="1.1"
 width="300" height="200"
 xmlns="http://www.w3.org/2000/svg">
-<${answers.shape} cx="150" cy="100" r="80" fill="${answers.shapeColor}" />
-<text x="150" y="125" font-size="60" text-anchor="middle" fill="${answers.textColor}">${answers.text}</text>
+${shape.render()}
+<text x="150" y="125" font-size="55" text-anchor="middle" fill="${answers.textColor}">${answers.text}</text>
 </svg>`;
 
     // Create the SVG file
@@ -50,6 +61,9 @@ const init = () => {
         .then((answers) => {
             createSVG(answers);
         })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 }
 
 // Function call to initialize app
